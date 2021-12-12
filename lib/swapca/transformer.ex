@@ -16,17 +16,31 @@ defmodule Swapca.Transformer do
     GenServer.call(@me, {:queue_up, [user, repo]})
   end
 
-  def handle_call({:queue_up, [user, repo]}, _cli, _) do
-    # recuperar do github e informar o cliente em caso de erro
-    transform_request(user, repo)
-    |> send_to_output_queue() 
-    # formatar os dados
-    # jogar para fila 
-    #
-    {:reply, nil, [user, repo]}
+  def handle_call({:queue_up, [user, repo]}, _client, _state) do
+    case check_repo(user, repo) do
+      {:ok} ->  
+        process_transformation([user, repo])
+        {:reply, "Data is being processed", [user, repo]}
+      {:error, message} ->
+        {:reply, message, [user, repo]} 
+    end
   end
 
-  defp transform_request(user, repo) do
+  defp check_repo(user, repo) do
+    case Swapca.Github.validade_repo(user, repo) do
+      {:error, error} ->
+        {:error, "Error processing repository information. Message: #{error["message"]}"}
+      _ -> {:ok}
+    end
+  end
+
+  defp process_transformation(repo_info) do
+    repo_info
+    |> transform_request()
+    |> send_to_output_queue()
+  end
+
+  defp transform_request([user, repo]) do
     %{"user" => user,
       "repository" => repo,
       "issues" => transform_issues(user, repo),
@@ -44,7 +58,6 @@ defmodule Swapca.Transformer do
     |> Enum.map(&add_contributor_name(&1))
     |> Swapca.Formatter.format_contributors()
   end
-
 
   defp add_contributor_name(contributor) do
     user_data = Swapca.Github.get_user(contributor["login"])

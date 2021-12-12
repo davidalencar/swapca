@@ -17,16 +17,16 @@ defmodule Swapca.Cli do
   end
 
   def get_user_input() do
-    IO.puts("""
-      --------------------------
-      Entre com o nome do usuário no GitHub:
-      """)
+    IO.puts("--------------------------")
+    IO.puts("Enter the GitHub username:")
     user = read_line()
 
-    IO.puts("Agora informe o nome do repositório:")
+    IO.puts("Enter the repository name:")
     repo  = read_line()
 
+    IO.puts("Response:")
     Swapca.Transformer.queue_up(user, repo)
+    |> IO.puts()
 
     get_user_input()
   end
@@ -46,5 +46,8 @@ defmodule Swapca.Cli do
   end
 
   def validade(param), do: param
+
+
+
 
 end

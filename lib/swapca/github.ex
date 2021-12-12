@@ -7,19 +7,27 @@ defmodule Swapca.Github do
 
   # API
 
+  def validade_repo(user, repo) do
+    get_repo_url(user, repo)
+    |> fetch_data()
+  end
+
   def get_issues(user, repo) do
     get_issues_url(user, repo)
     |> fetch_data()
+    |> decode_response()
   end
 
   def get_contributors(user, repo) do
     get_contributors_url(user, repo)
     |> fetch_data()
+    |> decode_response()
   end
 
   def get_user(user) do
     get_user_url(user)
     |> fetch_data()
+    |> decode_response()
   end
 
   # Implementation
@@ -29,11 +37,15 @@ defmodule Swapca.Github do
     "#{@github_url}/#{endpoint}/#{user}"
   end
 
+  defp build_url(endpoint = "repos", user, repo) do
+    "#{@github_url}/#{endpoint}/#{user}/#{repo}"
+  end
   defp build_url(endpoint = "repos", user, repo, entity) do
     "#{@github_url}/#{endpoint}/#{user}/#{repo}/#{entity}"
   end
 
   defp get_user_url(user), do: build_url("users", user)
+  defp get_repo_url(user, repo), do: build_url("repos", user, repo)
   defp get_issues_url(user, repo), do: build_url("repos", user, repo, "issues")
   defp get_contributors_url(user, repo), do: build_url("repos", user, repo, "contributors")
 
@@ -42,7 +54,6 @@ defmodule Swapca.Github do
     url
     |> HTTPoison.get(@user_agent)
     |> handle_response
-    |> decode_response
   end
 
   # Response
