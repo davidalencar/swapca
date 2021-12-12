@@ -15,4 +15,8 @@ defmodule GithubTest do
     data = Swapca.Github.get_user("davidalencar")
     assert data["login"] == "davidalencar"
   end
+
+  assert_raise RuntimeError, "Error fetching from Github: Not Found", fn ->
+    Swapca.Github.get_issues("", "")
+  end
 end
