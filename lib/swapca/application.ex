@@ -9,7 +9,7 @@ defmodule Swapca.Application do
   def start(_type, _args) do
     children = [
       # Starts a worker by calling: Swapca.Worker.start_link(arg)
-      # {Swapca.Worker, arg}
+      Swapca.Cli
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
