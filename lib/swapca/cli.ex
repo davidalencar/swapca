@@ -1,5 +1,6 @@
 defmodule Swapca.Cli do
   use GenServer
+  import Swapca.Transformer
 
   @me Cli
 
@@ -25,7 +26,7 @@ defmodule Swapca.Cli do
     repo  = read_line()
 
     IO.puts("Response:")
-    Swapca.Transformer.queue_up(user, repo)
+    queue_up(user, repo)
     |> IO.puts()
 
     get_user_input()
@@ -46,8 +47,4 @@ defmodule Swapca.Cli do
   end
 
   def validade(param), do: param
-
-
-
-
 end
