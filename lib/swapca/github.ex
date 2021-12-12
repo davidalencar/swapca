@@ -52,6 +52,13 @@ defmodule Swapca.Github do
       body |> Poison.Parser.parse!() 
     }
   end
+
+  defp handle_response({:error,%HTTPoison.Error{}}) do
+    {
+     :error,
+     %{"message" => "Cold not hit GitHub API"}
+    }
+  end
   
   defp check_for_error(200), do: :ok
   defp check_for_error(_), do: :error
@@ -59,6 +66,5 @@ defmodule Swapca.Github do
   defp decode_response({:ok, body}), do: body
   defp decode_response({:error, error}) do
     raise "Error fetching from Github: #{error["message"]}"
-    System.halt(2)
   end
 end

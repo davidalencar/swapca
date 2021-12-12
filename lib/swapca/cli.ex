@@ -21,18 +21,30 @@ defmodule Swapca.Cli do
       --------------------------
       Entre com o nome do usuário no GitHub:
       """)
-    user_name = parse_param(IO.read(:stdio, :line))
+    user = read_line()
 
     IO.puts("Agora informe o nome do repositório:")
+    repo  = read_line()
 
-    repo  = parse_param(IO.read(:stdio, :line))
+    Swapca.Transformer.queue_up(user, repo)
 
-    IO.puts("Carregando dados do repositório #{user_name}/#{repo}")
     get_user_input()
   end
+
+  def read_line() do
+    IO.read(:stdio, :line)
+            |> parse_param()
+            |> validade()
+  end 
 
   def parse_param(param) do
     String.trim(param)
   end
+
+  def validate("") do
+    raise "Valor inválido"
+  end
+
+  def validade(param), do: param
 
 end
