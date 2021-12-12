@@ -65,7 +65,7 @@ defmodule Swapca.Transformer do
   end
 
   defp send_to_output_queue (data) do
-    IO.inspect(data)
+    Swapca.QueueSupervisor.queue_up(data)
   end
 
 end
