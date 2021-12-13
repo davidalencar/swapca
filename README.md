@@ -53,6 +53,19 @@ If you prefer run on your environment, it is available the command below to help
 make install compile run
 ```
 
+#### How it looks like
 
 In both scenarios the execution should looks like that:
 ![This is an image](./assets/swapca_mix_run.GIF)
+
+## Where it could be better?
+
+ - Tests:
+    - I should be able to run more unit and integrated tests.
+    - I missed a test coverage reporting tool.
+    - I need to learn to mock
+ - UI
+    -  I found that using "IO.read/2" in a GenServer was not the best approach. When trying to run the application in its release version it cannot read the console.
+ - State
+    - It could create a GenServer to keep the state of the items in the queue.
+    - Another option would be to put it in a NoSQL database, facilitating the storage of the message already in JSON, to be consulted at the right time.
