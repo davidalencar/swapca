@@ -9,3 +9,9 @@ release:
 
 run:
 	mix run --no-halt
+
+build:
+	docker build -t swapca:latest .
+
+run-image:
+	sudo docker run -it swapca
