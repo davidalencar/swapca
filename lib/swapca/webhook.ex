@@ -24,7 +24,7 @@ defmodule Swapca.Webhook do
     {:error, "Error trying to send data to webhook #{reason["message"]}"}
   end
 
-  defp check_for_error(201), do: :ok
+  defp check_for_error(200), do: :ok
   defp check_for_error(_), do: :error
 
   defp ret_msg(:ok), do: "Data sent to Webhook"
