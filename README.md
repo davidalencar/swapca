@@ -29,10 +29,30 @@ In order to reproduce the test scenario where the application must wait 24 hours
 
 ## How to run
 
-You can use this command to reproduce the scenario you are watching in the GIF animation.
+You can run in a docker image or directly on your environment.
+
+#### Running in a docker container
+
+Using the command below a image named "swapca:latest" will be created.
+
+```
+make build
+```
+
+Now you can easily run from ther image with:
+
+```
+make run-image
+```
+
+#### Running directly on your environment
+
+If you prefer run on your environment, it is available the command below to help you:
 
 ```
 make install compile run
 ```
 
+
+In both scenarios the execution should looks like that:
 ![This is an image](./assets/swapca_mix_run.GIF)
