@@ -1,5 +1,8 @@
 install:
-	mix deps.get compile
+	mix deps.get
+
+compile:
+	mix compile
 
 release:
 	mix distillery.release --env=prod

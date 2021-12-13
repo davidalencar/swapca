@@ -29,5 +29,10 @@ In order to reproduce the test scenario where the application must wait 24 hours
 
 ## How to run
 
-Via mix:
+You can use this command to reproduce the scenario you are watching in the GIF animation.
+
+```
+make install compile run
+```
+
 ![This is an image](./assets/swapca_mix_run.GIF)
