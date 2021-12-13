@@ -1,22 +1,18 @@
-# Swapca
+# SWAPCA 
+#### (SWAP - Challenge Accepted)
 
-**TODO: Add description**
+This application help us to retrieve issues registered in any github's public repository and receive it in our webhook nicely formatted.
 
-## Installation
+## Builded with
+ - [HTTPoison](https://hexdocs.pm/httpoison/HTTPoison.html)
+ - [Poison](https://hexdocs.pm/poison/Poison.html)
+ - [Distillery](https://hexdocs.pm/distillery/2.0.0/home.html)
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `swapca` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:swapca, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/swapca](https://hexdocs.pm/swapca).
-
+## How it works
 ![This is an image](./assets/spca_diagram-Page-2.drawio.png)
+
+
+## How to run
+
+Via mix:
+![This is an image](./assets/swapca_mix_run.GIF)
