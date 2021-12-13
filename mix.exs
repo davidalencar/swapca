@@ -24,6 +24,7 @@ defmodule Swapca.MixProject do
     [
       {:httpoison, "~> 1.8"},
       {:poison, "~> 5.0"},
+      {:distillery, "~> 2.0"}
     ]
   end
 end
