@@ -1,5 +1,5 @@
 # SWAPCA 
-#### (SWAP - Challenge Accepted)
+#### A practical example
 
 This application help us to retrieve issues registered in any github's public repository and receive it in our webhook nicely formatted.
 
